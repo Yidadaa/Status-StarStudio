@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Status</title>
+    <link rel="stylesheet" href="status.css">
+    <script src="status.js"></script>
+    <script src="echarts.common.min.js"></script>
+</head>
+<body onload="init()">
+    <div id="container">
+        <div id="header">Status-StarStudio</div>
+        <div id="instant-status-wrap" class="wrap">
+            <p class="title">服务器状态</p>
+            <table>
+                <tr>
+                    <td class="table-title"><p id="name">CPU</p><p id="value">12%</p></td>
+                    <td rowspan="3"><div id="status-chart">noData</div></td>
+                </tr>
+                <tr>
+                    <td class="table-title"><p id="name">Disk</p><p id="value">22%</p></td>
+                </tr>
+                <tr>
+                    <td class="table-title"><p id="name">PV</p><p id="value">1234</p></td>
+                </tr>
+            </table>
+        </div>
+        <div class="wrap">
+            <p class="title">进程状态</p>
+            <div id="process-wrap">
+                <div class="process">
+                    <p class="process-title">12</p>
+                    <span class="process-per"> <span id="line"></span><span id="value">12%</span></span>
+                    <span class="process-status"></span>
+                </div>
+                <div class="process">
+                    <p class="process-title">123</p>
+                    <span class="process-per"> <span id="line"></span><span id="value">12%</span></span>
+                    <span class="process-status"></span>
+                </div>
+                <div class="process">
+                    <p class="process-title">31</p>
+                    <span class="process-per"> <span id="line"></span><span id="value">12%</span></span>
+                    <span class="process-status"></span>
+                </div>
+                <div class="process">
+                    <p class="process-title">31</p>
+                    <span class="process-per"> <span id="line"></span><span id="value">12%</span></span>
+                    <span class="process-status"></span>
+                </div>
+                <div class="process">
+                    <p class="process-title">123</p>
+                    <span class="process-per"> <span id="line"></span><span id="value">12%</span></span>
+                    <span class="process-status"></span>
+                </div>
+                <div class="process">
+                    <p class="process-title">31</p>
+                    <span class="process-per"> <span id="line"></span><span id="value">12%</span></span>
+                    <span class="process-status"></span>
+                </div>
+                <div class="process">
+                    <p class="process-title">31</p>
+                    <span class="process-per"> <span id="line"></span><span id="value">12%</span></span>
+                    <span class="process-status"></span>
+                </div>
+                <div class="process">
+                    <p class="process-title">31</p>
+                    <span class="process-per"> <span id="line"></span><span id="value">12%</span></span>
+                    <span class="process-status"></span>
+                </div>
+                <div class="process">
+                    <p class="process-title">123</p>
+                    <span class="process-per"> <span id="line"></span><span id="value">12%</span></span>
+                    <span class="process-status"></span>
+                </div>
+                <div class="process">
+                    <p class="process-title">31</p>
+                    <span class="process-per"> <span id="line"></span><span id="value">12%</span></span>
+                    <span class="process-status"></span>
+                </div>
+                <div class="process">
+                    <p class="process-title">31</p>
+                    <span class="process-per"> <span id="line"></span><span id="value">12%</span></span>
+                    <span class="process-status"></span>
+                </div>
+                <div class="process">
+                    <p class="process-title">31</p>
+                    <span class="process-per"> <span id="line"></span><span id="value">12%</span></span>
+                    <span class="process-status"></span>
+                </div>
+                <div class="process">
+                    <p class="process-title">123</p>
+                    <span class="process-per"> <span id="line"></span><span id="value">12%</span></span>
+                    <span class="process-status"></span>
+                </div>
+                <div class="process">
+                    <p class="process-title">31</p>
+                    <span class="process-per"> <span id="line"></span><span id="value">12%</span></span>
+                    <span class="process-status"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

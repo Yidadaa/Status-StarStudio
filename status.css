@@ -1,0 +1,90 @@
+body {
+    font-family: "微软雅黑";
+    background-color: #F9F9F9;
+}
+body p {
+    margin: 0px;
+}
+#container {
+    min-height: 600px;
+    width: 1000px;
+    background-color: #fff;
+    border-radius: 5px;
+    margin: auto;
+    box-shadow: 1px 1px 10px #D2D2D2;
+}
+#header {
+    font-size: 30px;
+    height: 40px;
+    padding: 20px;
+    background-color: #676767;
+    color: #fff;
+    border-radius: 5px 5px 0 0;
+}
+.title {
+    font-size: 20px;
+}
+.wrap {
+    border-bottom: 1px #D2D2D2 solid;
+    padding: 20px;
+}
+table {
+    border: 1px solid #D2D2D2;
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+.table-title {
+    width: 10%;
+    text-align: right;
+}
+.table-title #name {
+    color: #676767;
+    font-size: 10px;
+}
+.table-title #value {
+    margin: 0px;
+    font-size: 20px;
+}
+td {
+    border: 1px solid #D2D2D2;
+    padding: 10px;
+}
+.process {
+    width: 168px;
+    height: 40px;
+    display: inline-block;
+    margin-right: 11px;
+    border: 1px solid #D2D2D2;
+    margin-top: 15px;
+    padding: 5px;
+}
+#process-wrap {
+    margin-right: -15px;
+    margin-top: 10px;
+}
+.process-title {
+    font-size: 8px;
+    color: cornflowerblue;
+    margin-bottom: 2px;
+}
+.process-status {
+    float: right;
+    height: 10px;
+    width: 10px;
+    background-color: green;
+    margin-top: 6px;
+    border-radius: 10px;
+}
+.process-per #line {
+    height: 10px;
+    width: 50px;
+    border-radius: 5px;
+    background-color: #D2D2D2;
+    display: inline-block;
+}
+.process-per #value {
+    font-size: 10px;
+    color: #676767;
+}
