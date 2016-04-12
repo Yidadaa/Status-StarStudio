@@ -48,7 +48,7 @@ function max(data) {
 }
 /*
 函数名称：折线图处理函数
-传入参数：数据集，显示颜色
+传入参数：数据集，显示颜色，传入值的类型
 传出参数：无
 */
 function drawLine(data, color, type) {
@@ -61,10 +61,10 @@ function drawLine(data, color, type) {
     var scaleY;
     switch (type) {
         case "percent":
-            scaleY = parseInt(max(data) * 1.2);
+            scaleY = 100; //如果是百分比就以100为最大值
             break;
         case "number":
-            scaleY = parseInt(max(data) * 1.2);
+            scaleY = max(data) * 1.5; //否则就以数据最大值
             break;
         default:
             break;
@@ -79,7 +79,7 @@ function drawLine(data, color, type) {
 }
 /*
 函数名称：进程渲染函数
-传入参数：进城信息
+传入参数：进程信息
 传出参数：渲染后的DOM节点
 */
 function processRender(process) {
@@ -122,7 +122,7 @@ function render(data) {
     recentData.cpu.push(data.cpu);
     recentData.disk.push(data.disk);
     recentData.pv.push(data.pv);
-    recentData.timeStamp.push(data.timeStamp);
+    recentData.timeStamp.push(data.nowTime);
 
     /*渲染进程状态部分*/
     var targetDiv = $("#process-wrap");
@@ -238,22 +238,28 @@ function init() {
     var testData = [
         [],
         [],
+        [],
         []
     ];
     for (var i = 0; i < 360; i++) {
-        testData[0].push(100 - parseInt(Math.random() * 10));
-        testData[1].push(parseInt(Math.random() * 100));
-        testData[2].push(parseInt(Math.random() * 1000));
+        testData[0].push(parseInt(Math.random() * 30));
+        testData[1].push(parseInt(Math.random() * 20));
+        testData[2].push(parseInt(Math.random() * 160 + 300));
+        var date = new Date();
+        testData[3].push(date.getMonth() + "/" + date.getDate() + "/" + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds());
     }
     recentData.cpu = testData[0];
     recentData.disk = testData[1];
     recentData.pv = testData[2];
+    recentData.timeStamp = testData[3];
     //test
 
     setInterval(function() {
-        data.cpu = 100 - parseInt(Math.random() * 10);
-        data.disk = parseInt(Math.random() * 100);
-        data.pv = parseInt(Math.random() * 1000);
+        data.cpu = parseInt(Math.random() * 10 + 20);
+        data.disk = parseInt(Math.random() * 20);
+        data.pv = parseInt(Math.random() * 160 + 300);
+        var date = new Date();
+        data.nowTime = date.getMonth() + "/" + date.getDate() + "/" + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
         render(data);
     }, 1000);
 }
