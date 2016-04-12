@@ -218,7 +218,7 @@ function init() {
             name: "h2aha",
             percent: 2,
             status: true
-        }],
+        }]
     };
     $("#status-chart").addEventListener("mousemove", function(event) {
         var x = event.clientX + 10 + "px";
