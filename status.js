@@ -98,7 +98,7 @@ function processRender(process) {
     value.id = "value";
     value.innerHTML = process.percent + "%";
     status.className = "process-status";
-    if (!process.status) status.style.backgroundColor = "#DE0000";
+    if (!process.status) status.style.backgroundColor = "#840000";
     per.appendChild(line);
     per.appendChild(value);
     node.appendChild(title);
@@ -113,6 +113,12 @@ function processRender(process) {
 传出参数：无
 */
 function render(data) {
+    if (recentData.cpu.length > 360) {
+        recentData.cpu.shift();
+        recentData.disk.shift();
+        recentData.pv.shift();
+        recentData.timeStamp.shift();
+    }
     recentData.cpu.push(data.cpu);
     recentData.disk.push(data.disk);
     recentData.pv.push(data.pv);
@@ -134,29 +140,12 @@ function render(data) {
     $("#CPU").innerHTML = data.cpu + "%";
     $("#disk").innerHTML = data.disk + "%";
     $("#pv").innerHTML = data.pv + "/h";
-    var testData = [
-        [],
-        []
-    ];
-    for (var i = 0; i < 600; i++) {
-        testData[0].push(100 - parseInt(Math.random() * 10));
-        testData[1].push(parseInt(Math.random() * 100));
-    }
-    drawLine(testData[0], "rgba(255,0,0,0.5)", "percent");
-    drawLine(testData[1], "rgba(0,0,0,0.5)", "number");
 
-    $("#status-chart").addEventListener("click", function(event) {
-        function draw(params) {
-            var x = parseInt((event.clientX - 310) / 843 * testData[1].length);
-            var div = $("#status-chart").getContext('2d');
-            var data = testData[1][x];
-            debugger;
-            div.save();
-            div.font = "12px";
-            div.fillText(data, event.clientX - 310, 10);
-            div.restore();
-        }
-    })
+    $("#status-chart").getContext('2d').clearRect(0, 0, 843, 174);
+    drawLine(recentData.cpu, "#00AF3D", "percent");
+    drawLine(recentData.disk, "#C23531", "percent");
+    drawLine(recentData.pv, "#61A0A8", "number");
+
 }
 /*
 函数名称：获取数据函数
@@ -193,8 +182,78 @@ function init() {
             name: "h2aha",
             percent: 2,
             status: true
+        }, {
+            name: "h2aha",
+            percent: 10,
+            status: true
+        }, {
+            name: "h2aha",
+            percent: 5,
+            status: true
+        }, {
+            name: "h2aha",
+            percent: 2,
+            status: true
+        }, {
+            name: "h2aha",
+            percent: 10,
+            status: true
+        }, {
+            name: "h2aha",
+            percent: 5,
+            status: true
+        }, {
+            name: "h2aha",
+            percent: 2,
+            status: true
+        }, {
+            name: "h2aha",
+            percent: 10,
+            status: true
+        }, {
+            name: "h2aha",
+            percent: 5,
+            status: true
+        }, {
+            name: "h2aha",
+            percent: 2,
+            status: true
         }],
     };
+    $("#status-chart").addEventListener("mousemove", function(event) {
+        var x = event.clientX + 10 + "px";
+        var y = event.clientY + "px";
+        var tooltip = $("#tooltip");
+        tooltip.style.top = y;
+        tooltip.style.left = x;
+        tooltip.style.visibility = "visible";
+        var dataX = event.clientX - 127 - $("#container").offsetLeft;
+        var key = parseInt(dataX / 843 * recentData.cpu.length);
+        tooltip.innerHTML = recentData.timeStamp[key] + "<br>CPU:" + recentData.cpu[key] + "%<br>Disk:" + recentData.disk[key] + "%<br>PV:" + recentData.pv[key];
+    })
+    $("#status-chart").addEventListener("mouseleave", function() {
+        $("#tooltip").style.visibility = "hidden";
+    });
+    //test
+    var testData = [
+        [],
+        [],
+        []
+    ];
+    for (var i = 0; i < 360; i++) {
+        testData[0].push(100 - parseInt(Math.random() * 10));
+        testData[1].push(parseInt(Math.random() * 100));
+        testData[2].push(parseInt(Math.random() * 1000));
+    }
+    recentData.cpu = testData[0];
+    recentData.disk = testData[1];
+    recentData.pv = testData[2];
+    //test
 
-    render(data);
+    setInterval(function() {
+        data.cpu = 100 - parseInt(Math.random() * 10);
+        data.disk = parseInt(Math.random() * 100);
+        data.pv = parseInt(Math.random() * 1000);
+        render(data);
+    }, 1000);
 }
