@@ -98,7 +98,7 @@ function processRender(process) {
     value.id = "value";
     value.innerHTML = process.percent + "%";
     status.className = "process-status";
-    if (!process.status) status.style.backgroundColor = "#840000";
+    if (!process.status) status.style.backgroundColor = "#fff";
     per.appendChild(line);
     per.appendChild(value);
     node.appendChild(title);
@@ -140,8 +140,8 @@ function render(data) {
     $("#CPU").innerHTML = data.cpu + "%";
     $("#disk").innerHTML = data.disk + "%";
     $("#pv").innerHTML = data.pv + "/h";
-
-    $("#status-chart").getContext('2d').clearRect(0, 0, 843, 174);
+    var maxWidth=$("#status-chart").width;
+    $("#status-chart").getContext('2d').clearRect(0, 0, maxWidth, 174);
     drawLine(recentData.cpu, "#00AF3D", "percent");
     drawLine(recentData.disk, "#C23531", "percent");
     drawLine(recentData.pv, "#61A0A8", "number");
@@ -227,8 +227,10 @@ function init() {
         tooltip.style.top = y;
         tooltip.style.left = x;
         tooltip.style.visibility = "visible";
-        var dataX = event.clientX - 127 - $("#container").offsetLeft;
-        var key = parseInt(dataX / 843 * recentData.cpu.length);
+        var dataX = event.clientX - 125 - $("#container").offsetLeft;
+        var scrollX=$("#time-line").scrollLeft;
+        var maxY=$("#status-chart").width;
+        var key = parseInt((dataX +scrollX)/ maxY * recentData.cpu.length);
         tooltip.innerHTML = recentData.timeStamp[key] + "<br>CPU:" + recentData.cpu[key] + "%<br>Disk:" + recentData.disk[key] + "%<br>PV:" + recentData.pv[key];
     })
     $("#status-chart").addEventListener("mouseleave", function() {
@@ -241,7 +243,7 @@ function init() {
         [],
         []
     ];
-    for (var i = 0; i < 360; i++) {
+    for (var i = 0; i < 1800; i++) {
         testData[0].push(parseInt(Math.random() * 30));
         testData[1].push(parseInt(Math.random() * 20));
         testData[2].push(parseInt(Math.random() * 160 + 300));
