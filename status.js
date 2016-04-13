@@ -253,7 +253,7 @@ function init() {
     recentData.pv = testData[2];
     recentData.timeStamp = testData[3];
     //test
-
+    render(data);
     setInterval(function() {
         data.cpu = parseInt(Math.random() * 10 + 20);
         data.disk = parseInt(Math.random() * 20);
